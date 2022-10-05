@@ -9,26 +9,12 @@ if (isset($_POST['action']) && !empty($_POST['action'])) {
 
     $action = $_POST['action'];
 
-    if ($action == 'passUpdate') {
+    if ($action == 'loadUsers') {
+        $myVar = 'Positive';
 
-        $user_ID = $_POST['user_ID'];
-        $new_pass = $_POST['value'];
-
-        $data['user_ID'] = $user_ID;
-        $data['password'] = $new_pass;
-
-        $query = ""; //query was incomplete and missing ";"
-
-        $queryUpdatePass = $db->prepare("UPDATE client_authentification SET password = ? where client_authentification_ID = ?");
-
-        $queryUpdatePass->bindParam('?', $new_pass, PDO::PARAM_STR);
-        $queryUpdatePass->bindParam('?', $user_ID, PDO::PARAM_INT);
-        $queryUpdatePass->execute(array($new_pass, $user_ID));
-
-        if ($queryUpdatePass) {
-
-            $user_action_log = 'user :' . $user_ID . ' -  MdP modifé';
-           
+        if ($myVar == 'Positive') {
+            
+            $data = $myVar;
 
             $response['data'] = $data;
             $response['message'] = ' MdP actialisé correctement';
