@@ -3,47 +3,38 @@
   <body>
     <div>
       <h1>Thanks Othman</h1>
-      <button class="loadData">Click me</button>
+      <button class="loadData">Feed me</button>
     </div>
-    <div id="dataResponse">
-        <table id="inputHere"></table>
-    </div>
+    <span>Please input</span>
+    <input type="text" id="userId">
+    <p id="here"></p>
     <script
       src="https://code.jquery.com/jquery-3.6.1.min.js"
       integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
       crossorigin="anonymous"
     ></script>
     <script>
-        
-
-
       $(document).ready(function () {
         $("body").on("click", ".loadData", function () {
+          let inputValuer = document.getElementById('userId').value;
           $.ajax({
             type: "POST",
             url: "qf/myqueries.php",
             async: true,
             data: {
-              action: 'loadUsers',
+              action: 'getUsername',
+              inputvalue : inputValuer
             },
+            
             success: function (msg) {
               var response = JSON.parse(msg);
-
-              if (response['status'] == 200) {
-                console.log("Success : ", response.data);
-                console.table(response);
-                document.getElementById('dataResponse').innerHTML=response.data;
-            
-
-              } else {
-
-                console.table(response);
-                console.error("Error : ", response.data);
-
-              }
+              document.getElementById('here').innerHTML= response.inputvalue;
             },
           });
         });
+
+
+        
       });
     </script>
   </body>
