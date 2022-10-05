@@ -23,10 +23,10 @@
             },
             success: function (msg) {
               var response = JSON.parse(msg);
-              if (response.statut === 200) {
+              if (response.statut == 200) {
                 console.log("response ", response.data);
               } else {
-                console.error("response ", response.data);
+                console.error("Error ", response.data);
               }
             },
           });
