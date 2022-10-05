@@ -43,35 +43,6 @@ if (isset($_POST['action']) && !empty($_POST['action'])) {
         }
 
 
-    } elseif ($action == 'statusUpdate') {
-
-        $user_ID = $_POST['user_ID'];
-        $status_value = (int)$_POST['value'];
-
-        $data['user_ID'] = $user_ID;
-        $data['status_value'] = $status_value;
-
-        $queryUpdateStatus = $db->prepare("UPDATE client_authentification SET status = ? where client_authentification_ID = ?");
-
-        $queryUpdateStatus->bindParam('?', $status_value, PDO::PARAM_STR);
-        $queryUpdateStatus->bindParam('?', $user_ID, PDO::PARAM_INT);
-        $queryUpdateStatus->execute(array($status_value, $user_ID));
-
-        if ($queryUpdateStatus) {
-
-            $user_action_log = "userID ( $user_ID ) - status Modifié : $status_value";
-            
-
-            $response['data'] = $data;
-            $response['message'] = ' Status actualisé correctement';
-            $response['status'] = 200;
-
-        } else {
-
-            $response['data'] = $data;
-            $response['message'] = $db->errorInfo();
-            $response['status'] = 204;
-        }
     } else {
         $response['data'] = $data;
         $response['message'] = 'Veuillez verifier votre requete';
