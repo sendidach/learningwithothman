@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
+      integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div>
+        <button class="loadData">Click me</button>
+    </div>
+    <div id="dataResponse">
+    </div>
+    <script>
+      $(document).ready(function () {
+    
+        $("body").on("click", ".loadData", function () {
+
+            $.ajax({
+              type: "POST",
+              url: "qf/myqueries.php",
+              async: true,
+              data: {
+                // action: 'loadUsers',
+              },
+              success: function (msg) {
+                var response = JSON.parse(msg);
+                if(response.statut===200){
+                    console.log('response ', response.data)
+                } else{
+                    console.error('response ', response.data)
+                }
+              
+              },
+            });
+          
+        });
+
+      });
+    </script>
+  </body>
+</html>
