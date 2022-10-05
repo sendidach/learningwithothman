@@ -12,22 +12,9 @@ if (isset($_POST['action']) && !empty($_POST['action'])) {
     if ($action == 'loadUsers') {
         $myVar = 'Positive';
 
-        if ($myVar == 'Positive') {
-            
-            $data = $myVar;
-
-            $response['data'] = $data;
-            $response['message'] = ' MdP actialisé correctement';
-            $response['status'] = 200;
- 
-        } else {
-
-            $response['data'] = $data;
-            $response['message'] = $db->errorInfo();
-            $response['status'] = 204;
-
-        }
-
+        $response['data'] = $myVar;
+        $response['message'] = 'SUCCESS';
+        $response['status'] = 200;
 
     } else {
         $response['data'] = $data;
