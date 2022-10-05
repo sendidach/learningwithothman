@@ -32,7 +32,7 @@
               if (response['status'] == 200) {
                 console.log("Success : ", response.data);
                 console.table(response);
-                document.getElementById('dataResponse').innerHTML(response.data);
+                document.getElementById('dataResponse').innerHTML=response.data;
             
 
               } else {
