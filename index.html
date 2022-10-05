@@ -23,10 +23,16 @@
             },
             success: function (msg) {
               var response = JSON.parse(msg);
-              if (response.statut == 200) {
-                console.log("response ", response.data);
+
+              if (response['status'] == 200) {
+                console.log("Success : ", response.data);
+                console.table(response);
+
               } else {
-                console.error("Error ", response.data);
+
+                console.table(response);
+                console.error("Error : ", response.data);
+
               }
             },
           });

@@ -10,20 +10,19 @@ if (isset($_POST['action']) && !empty($_POST['action'])) {
     $action = $_POST['action'];
 
     if ($action == 'loadUsers') {
-        $myVar = 'Positive';
 
-        $response['data'] = $myVar;
+        $response['data'] = 'Positive';
         $response['message'] = 'SUCCESS';
         $response['status'] = 200;
 
     } else {
-        $response['data'] = $data;
+        $response['data'] = 'Error 1';
         $response['message'] = 'Veuillez verifier votre requete';
         $response['status'] = 206;
     }
 } else {
 
-    $response['data'] = $data;
+    $response['data'] = 'error 0';
     $response['message'] = 'requete incomplete, contactez votre administrateur avec le code suivant : P_ACTION 321F45';
     $response['status'] = 404;
 }
