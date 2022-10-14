@@ -1,22 +1,43 @@
 <html>
-  <head> </head>
+  <head> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+  </head>
   <body>
     <div>
       <h1>Thanks Othman</h1>
-      <button class="loadData">Feed me</button>
     </div>
-    <span>Please input</span>
-    <input type="text" id="userId">
+    <span>Please input name</span>
+
+    <button id="loaduserId" userid="achraf" >TO CAPS</button> <br> <br>
+
+
+    <span>Please input phone Number</span>
+    <input type="text" id="phoneNumber">
+    <button class="loadphone">Show me</button>
     <p id="here"></p>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.6.1.min.js"
       integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
       crossorigin="anonymous"
     ></script>
     <script>
+      //Notyf Library
+
+      var notyf = new Notyf({
+            duration: 5000, // Set your global Notyf configuration here
+            position: {
+                x: 'right',
+                y: 'top',
+            }
+        });
+
+      //Ajax Requests
+
       $(document).ready(function () {
-        $("body").on("click", ".loadData", function () {
-          let inputValuer = document.getElementById('userId').value;
+        $("body").on("click", "#loaduserId", function () {
+          const name = document.getElementById("loaduserId"); 
+          let inputValuer = name.getAttribute('userid');
           $.ajax({
             type: "POST",
             url: "qf/myqueries.php",
@@ -28,13 +49,59 @@
             
             success: function (msg) {
               var response = JSON.parse(msg);
-              document.getElementById('here').innerHTML= response.inputvalue;
+              if (response.statut == 200){
+                document.getElementById('here').innerHTML= response.data;
+                notyf.success({
+                                message: response.message,
+                                duration: 2000,
+                                dismissible: true,
+                            });
+              } else {
+                document.getElementById('here').innerHTML= response.message;
+                notyf.error({
+                                message: response.message,
+                                duration: 2000,
+                                dismissible: true,
+                            });
+              }
             },
           });
         });
 
+        $("body").on("click", ".loadphone", function () {
+          let inputValuer = document.getElementById('phoneNumber').value;
+          $.ajax({
+            type: "POST",
+            url: "qf/myqueries.php",
+            async: true,
+            data: {
+              action: 'getphoneNumber',
+              inputvalue : inputValuer
+            },
+            
+            success: function (msg) {
+              var response = JSON.parse(msg);
+              if (response.statut == 200){
+                document.getElementById('here').innerHTML= response.data;
+                notyf.success({
+                                message: response.message,
+                                duration: 2000,
+                                dismissible: true,
+                            });
 
-        
+              } else {
+                notyf.error({
+                                message: response.message,
+                                duration: 2000,
+                                dismissible: true,
+                            });
+
+                document.getElementById('here').innerHTML= response.error;
+              }
+              
+            },
+          });
+        });
       });
     </script>
   </body>
