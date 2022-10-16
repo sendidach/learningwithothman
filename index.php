@@ -1,18 +1,22 @@
 <?php
-$user = 'mamp';
+$user = 'root';
 $pass = 'root';
 
 
 
 try{
-   $db = new PDO ('mysql:host=localhost;db_othman',$user,$pass);
-   // foreach($db->query('SELECT * FROM tb_users') as $row) 
-   // {
-   //  echo($row);
-   // }
+   $db = new PDO ('mysql:host=127.0.0.1;db_othman',$user,$pass);
+   echo '<h1>Succesful Connection to the DB</h1>';
+   $query = 'SELECT * FROM tb_users';
+   $statement = $db->prepare($query);
+   $statement->execute();
+   $results = $statement->fetchAll();
+   $statement->closeCursor();      
 
-   $stmt = $db->query("SELECT * FROM tb_users");
-   print_r($stmt);
+    foreach($results as $r){
+            echo $r['work'] . '<br />';
+    }
+
 }
 catch (PDOException $e){
    print "Erreur " . $e->getMessage() . "<br/>";
