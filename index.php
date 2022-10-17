@@ -14,7 +14,7 @@ try{
    $statement->closeCursor();      
 
     foreach($results as $r){
-            echo $r['work'] . '<br />';
+            echo $r['firstname'] . '<br />';
     }
 
 }
