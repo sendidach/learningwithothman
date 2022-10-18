@@ -4,11 +4,15 @@ ob_start();
 require("constant_vars.php");
 require("constant.php");
 
+$dsn = 'mysql:dbname=db_othman;host=localhost';
+$user = 'sendidach';
+$pass = '4042Juice!';
 
 try {
 
-	$db = new PDO("mysql:host=".SERVER.";dbname=".DB_NAME, USER, PASS,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+	 // CONNECT TO DB
+	 $db = new PDO ($dsn,$user,$pass,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+
 } catch (PDOException $e) {
 	
 	echo "DataBase Down";

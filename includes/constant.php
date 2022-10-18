@@ -1,7 +1,7 @@
 <?php
 session_start();
 define ("SERVER", "localhost");
-define ("USER", "root");
-define ("PASS", "");
-define ("DB_NAME", "crjube_merinos_test");
+define ("USER", "sendidach");
+define ("PASS", "4042Juice");
+define ("DB_NAME", "db_othman");
 ?>
