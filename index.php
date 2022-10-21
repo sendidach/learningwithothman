@@ -17,22 +17,9 @@ require ('includes/connect.php')
       <h1>Welcome to Learning with Othman </h1>
    
 <?php
-// Remote DB
-
-// $user = 'maxmind_sendidach';
-// $pass = '4042Juice';
-
-// Local DB
-
 $error = null;
-
-
-
 try{
-   
-
    // QUERY TO DISPLAY TABLE AS OBJ 
-
    $query = $db->query('SELECT * FROM tb_users');
    $users = ($query->fetchAll(PDO::FETCH_OBJ));
   
@@ -47,15 +34,11 @@ if ($error) {
 } else {
    foreach ($users as $user) {?>
       <pre>
-        <?php print_r ($user)?>
+        <?php print_r($user)?>
    </pre>
       <?php
    }
 }
-
-
-
-
 ?>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
