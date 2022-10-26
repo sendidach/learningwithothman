@@ -12,11 +12,9 @@ try {
 
 	 // CONNECT TO DB
 	 $db = new PDO ($dsn,$user,$pass,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-
+	 echo 'Successfully done';
 } catch (PDOException $e) {
 	
 	echo "DataBase Down";
 }
-
-
 ?>
